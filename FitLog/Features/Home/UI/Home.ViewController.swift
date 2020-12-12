@@ -62,7 +62,11 @@ extension Home {
         }
 
         func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            print("edit")
+            let vc = Workout.Edit.ViewController()
+//            vc.modalPresentationStyle = .fullScreen
+//            present(vc, animated: true)
+
+            navigationController?.pushViewController(vc, animated: true)
         }
 
         @objc private func didTappedStart(_ sender: UIButton) {
