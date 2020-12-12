@@ -13,6 +13,8 @@
 		EB148B302585265000BD9CCF /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB148B2F2585265000BD9CCF /* Home.swift */; };
 		EB148B332585266500BD9CCF /* Home.ViewController.View.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB148B322585266500BD9CCF /* Home.ViewController.View.swift */; };
 		EB148B372585267700BD9CCF /* Home.ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB148B362585267700BD9CCF /* Home.ViewController.swift */; };
+		EB563FBD25852F3F00D9CFCE /* Home.ViewController.View.CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB563FBC25852F3F00D9CFCE /* Home.ViewController.View.CollectionCell.swift */; };
+		EB563FC125853E7900D9CFCE /* Home.ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB563FC025853E7900D9CFCE /* Home.ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		EB148B2F2585265000BD9CCF /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		EB148B322585266500BD9CCF /* Home.ViewController.View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.ViewController.View.swift; sourceTree = "<group>"; };
 		EB148B362585267700BD9CCF /* Home.ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.ViewController.swift; sourceTree = "<group>"; };
+		EB563FBC25852F3F00D9CFCE /* Home.ViewController.View.CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.ViewController.View.CollectionCell.swift; sourceTree = "<group>"; };
+		EB563FC025853E7900D9CFCE /* Home.ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +80,7 @@
 		EB148B2C2585264000BD9CCF /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				EB148B2E2585264700BD9CCF /* ViewModel */,
+				EB563FBB25852F1F00D9CFCE /* ViewModel */,
 				EB148B2D2585264300BD9CCF /* UI */,
 				EB148B2F2585265000BD9CCF /* Home.swift */,
 			);
@@ -88,15 +92,9 @@
 			children = (
 				EB148B322585266500BD9CCF /* Home.ViewController.View.swift */,
 				EB148B362585267700BD9CCF /* Home.ViewController.swift */,
+				EB563FBC25852F3F00D9CFCE /* Home.ViewController.View.CollectionCell.swift */,
 			);
 			path = UI;
-			sourceTree = "<group>";
-		};
-		EB148B2E2585264700BD9CCF /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		EB148B392585276600BD9CCF /* Main */ = {
@@ -105,6 +103,14 @@
 				EB148B142585241D00BD9CCF /* AppDelegate.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		EB563FBB25852F1F00D9CFCE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EB563FC025853E7900D9CFCE /* Home.ViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,8 +183,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB148B332585266500BD9CCF /* Home.ViewController.View.swift in Sources */,
+				EB563FBD25852F3F00D9CFCE /* Home.ViewController.View.CollectionCell.swift in Sources */,
 				EB148B372585267700BD9CCF /* Home.ViewController.swift in Sources */,
 				EB148B152585241D00BD9CCF /* AppDelegate.swift in Sources */,
+				EB563FC125853E7900D9CFCE /* Home.ViewModel.swift in Sources */,
 				EB148B302585265000BD9CCF /* Home.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
