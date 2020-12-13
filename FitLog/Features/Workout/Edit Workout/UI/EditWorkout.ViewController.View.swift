@@ -48,7 +48,7 @@ extension Workout.Edit {
                   options: [], metrics: nil, views: views)
             )
             NSLayoutConstraint.activate(NSLayoutConstraint.constraints(
-                  withVisualFormat: "V:|[topImageView(200)]-(15)-[stackView]-(20)-[workoutTableView]-(10)-[startButton]-(25)-|",
+                  withVisualFormat: "V:|[topImageView(200)]-(5)-[stackView]-(20)-[workoutTableView]-(10)-[startButton]-(25)-|",
                   options: [], metrics: nil, views: views)
             )
 
@@ -123,7 +123,7 @@ extension Workout.Edit {
             let stack = UIStackView(arrangedSubviews: [muscleGroupLabel, totalExerciseLabel])
             stack.translatesAutoresizingMaskIntoConstraints = false
             stack.axis = .vertical
-            stack.spacing = 3
+            stack.spacing = 2
             return stack
         }()
 

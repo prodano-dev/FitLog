@@ -26,6 +26,14 @@ extension Home {
         }
 
         override func viewDidLoad() {
+
+            let add = UIBarButtonItem(
+                image: UIImage(systemName: "plus"),
+                style: .plain,
+                target: self,
+                action: #selector(didTappedPlusButton)
+            )
+            navigationItem.rightBarButtonItem = add
             navigationController?.navigationBar.prefersLargeTitles = true
             title = "WORKOUTS"
 
@@ -33,6 +41,11 @@ extension Home {
             _view.workoutCollection.dataSource = self
 
 
+        }
+
+        @objc private func didTappedPlusButton() {
+
+            present(UINavigationController(rootViewController: Workout.Add.ViewController()), animated: true)
         }
 
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

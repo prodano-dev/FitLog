@@ -37,7 +37,7 @@ extension Workout.Edit {
                                 weight: 100)
 
                 ],
-                muscleGroup: "Chest")
+                muscleGroup: .Chest)
         
     }
 }
