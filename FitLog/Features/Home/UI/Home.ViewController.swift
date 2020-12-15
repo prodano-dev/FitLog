@@ -82,6 +82,7 @@ extension Home {
             navigationController?.pushViewController(vc, animated: true)
         }
 
+
         @objc private func didTappedStart(_ sender: UIButton) {
             print(sender)
         }

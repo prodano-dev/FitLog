@@ -18,5 +18,7 @@ extension Workout.Add {
             })
             return data
         }()
+
+        public var exercises = [String]()
     }
 }

@@ -9,8 +9,7 @@ import UIKit
 
 extension Workout.Add {
 
-    class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
-
+    class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate {
 
         let viewModel = Workout.Add.ViewModel()
 
@@ -47,19 +46,43 @@ extension Workout.Add {
 
             navigationItem.leftBarButtonItem = cancelButton
             navigationItem.rightBarButtonItem = saveButton
+            dismissPickerView()
 
             _view.muscleGroupPicker.dataSource = self
             _view.muscleGroupPicker.delegate = self
+            _view.exerciseTableView.dataSource = self
+            _view.exerciseTableView.delegate = self
+            _view.addButton.addTarget(self, action: #selector(didTappedAddButton), for: .touchUpInside)
 
         }
 
-        @objc private func didTappedSaveButton() {
+        @objc private func didTappedAddButton() {
 
+            let exercise = _view.exerciseNameTextField.text
+            _view.exerciseNameTextField.text?.removeAll()
+
+            viewModel.exercises.append(exercise!)
+            _view.exerciseTableView.reloadData()
+        }
+
+        @objc private func didTappedSaveButton() {
+            navigationController?.pushViewController(Workout.Add.Exercise.ViewController(), animated: true)
         }
 
         @objc private func didTappedCancelButton() {
 
             dismiss(animated: true, completion: nil)
+        }
+
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return viewModel.exercises.count
+        }
+
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            let exercise = viewModel.exercises[indexPath.row]
+            cell.textLabel?.text = exercise
+            return cell
         }
 
         func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -72,6 +95,22 @@ extension Workout.Add {
 
         func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
             return viewModel.pickerViewData[row]
+        }
+
+        func dismissPickerView() {
+           let toolBar = UIToolbar()
+           toolBar.sizeToFit()
+            let button = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.action))
+           toolBar.setItems([button], animated: true)
+           toolBar.isUserInteractionEnabled = true
+            _view.muscleGroupTextField.inputAccessoryView = toolBar
+        }
+        @objc func action() {
+              view.endEditing(true)
+        }
+
+        func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+            _view.muscleGroupTextField.text = viewModel.pickerViewData[row]
         }
     }
 }
