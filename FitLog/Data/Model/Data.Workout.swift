@@ -12,7 +12,7 @@ extension Data {
     public struct Workout {
 
         let workoutName: String
-        let exercises: [Exercise]
+        var exercises: [Exercise]
         let muscleGroup: MuscleGroup
 
         enum MuscleGroup: CaseIterable {
@@ -58,9 +58,13 @@ extension Data {
 
     public struct Exercise {
         let name: String
-        let rep: Int
-        let set: Int
+        var setAndRep: [setAndRep]?
         let weight: Double?
+
+        public struct setAndRep {
+            var set: Int
+            var rep: Int
+        }
     }
 
 }

@@ -11,6 +11,17 @@ extension Workout.Add.Exercise {
 
     class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+        private let viewModel: ViewModel
+
+        public init(viewModel: ViewModel){
+
+            self.viewModel = viewModel
+
+            super.init(nibName: nil, bundle: nil)
+
+        }
+
+
         private var _view: View!
 
         public override func loadView() {
@@ -26,17 +37,34 @@ extension Workout.Add.Exercise {
 
         override func viewDidLoad() {
 
+            title = viewModel.workout.workoutName
+            let saveButton = UIBarButtonItem(
+                title: "Save",
+                style: .done,
+                target: self,
+                action: #selector(didTappedSaveButton)
+            )
+            saveButton.tintColor = UIColor(named: "DPBlue")
+            navigationItem.rightBarButtonItem = saveButton
+
             _view.exerciseTableView.delegate = self
             _view.exerciseTableView.dataSource = self
         }
 
+        @objc private func didTappedSaveButton() {
+            print(viewModel.workout)
+        }
+
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return setAmount
+            return viewModel.workout.exercises[section].setAndRep!.count
+        }
+
+        func numberOfSections(in tableView: UITableView) -> Int {
+            return viewModel.workout.exercises.count
         }
 
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ExerciseCell") as! Workout.Add.Exercise.View.Cell
-
             return cell
         }
 
@@ -45,24 +73,38 @@ extension Workout.Add.Exercise {
         }
 
         func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-            print(section)
             let view = Workout.Add.Exercise.FooterView()
-            view.addButton.addTarget(self, action: #selector(didTappedAddButton), for: .touchUpInside)
+            view.addButton.tag = section
+            view.addButton.addTarget(self, action: #selector(didTappedAddButton(_:)), for: .touchUpInside)
             return view
 
         }
 
         func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-            return "Benchpress/"
+            return viewModel.workout.exercises[section].name
         }
 
-        @objc private func didTappedAddButton() {
-            let addRow = IndexPath(row: setAmount, section: 0)
-            setAmount += 1
+        @objc private func didTappedAddButton(_ sender: UIButton) {
+
+            var exercise = viewModel.workout.exercises[sender.tag].setAndRep!
+
+            let indexPath = IndexPath(row: exercise.count - 1, section: 0)
+            let cell = _view.exerciseTableView.cellForRow(at: indexPath)
+                as! Workout.Add.Exercise.View.Cell
+
+            let addRow = IndexPath(row: exercise.count, section: sender.tag)
+            let repandset = Data.Exercise.setAndRep(
+                set: Int(cell.setTextField.text!)!,
+                rep: Int(cell.repsTextField.text!)!
+            )
+
+            viewModel.workout.exercises[sender.tag].setAndRep!.append(repandset)
             _view.exerciseTableView.insertRows(at: [addRow], with: .automatic)
         }
 
+        required init?(coder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+
     }
-
-
 }

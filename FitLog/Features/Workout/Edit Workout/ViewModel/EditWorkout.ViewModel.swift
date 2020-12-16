@@ -16,26 +16,9 @@ extension Workout.Edit {
                 workoutName: "PUSH A",
                 exercises: [
                     Data.Exercise(
-                                name: "Benchpress",
-                                rep: 5, set: 5,
-                                weight: 100),
-                    Data.Exercise(
-                                name: "Incline dumble press",
-                                rep: 5, set: 5,
-                                weight: 100),
-                    Data.Exercise(
-                                name: "Shoulder press",
-                                rep: 5, set: 5,
-                                weight: 100),
-                    Data.Exercise(
-                                name: "CableFly",
-                                rep: 5, set: 5,
-                                weight: 100),
-                    Data.Exercise(
-                                name: "Pushup",
-                                rep: 5, set: 5,
-                                weight: 100)
-
+                        name: "Bencpress",
+                        setAndRep: [Data.Exercise.setAndRep(set: 1, rep: 8),Data.Exercise.setAndRep(set: 2, rep: 8)],
+                        weight: 200)
                 ],
                 muscleGroup: .Chest)
         

@@ -29,6 +29,8 @@ extension Workout.Add.Exercise {
 
         }
 
+        public let footerView = Workout.Add.Exercise.FooterView()
+
         public let exerciseTableView: UITableView = {
             let tableView = UITableView()
             tableView.translatesAutoresizingMaskIntoConstraints = false

@@ -46,7 +46,6 @@ extension Workout.Add {
 
             navigationItem.leftBarButtonItem = cancelButton
             navigationItem.rightBarButtonItem = saveButton
-            dismissPickerView()
 
             _view.muscleGroupPicker.dataSource = self
             _view.muscleGroupPicker.delegate = self
@@ -66,7 +65,16 @@ extension Workout.Add {
         }
 
         @objc private func didTappedSaveButton() {
-            navigationController?.pushViewController(Workout.Add.Exercise.ViewController(), animated: true)
+
+            let workout = Data.Workout(
+                workoutName: _view.workoutNameTextField.text!,
+                exercises: viewModel.exercises.map({
+                    Data.Exercise(name: $0, setAndRep: [Data.Exercise.setAndRep(set: 1, rep: 12)], weight: 0)
+                }),
+                muscleGroup: .Abdominals)
+
+            let exviewModel = Workout.Add.Exercise.ViewModel(workout: workout)
+            navigationController?.pushViewController(Workout.Add.Exercise.ViewController(viewModel: exviewModel), animated: true)
         }
 
         @objc private func didTappedCancelButton() {
@@ -85,6 +93,10 @@ extension Workout.Add {
             return cell
         }
 
+        func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+            return "You can add sets and reps on the next view."
+        }
+
         func numberOfComponents(in pickerView: UIPickerView) -> Int {
             return 1
         }
@@ -95,18 +107,6 @@ extension Workout.Add {
 
         func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
             return viewModel.pickerViewData[row]
-        }
-
-        func dismissPickerView() {
-           let toolBar = UIToolbar()
-           toolBar.sizeToFit()
-            let button = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.action))
-           toolBar.setItems([button], animated: true)
-           toolBar.isUserInteractionEnabled = true
-            _view.muscleGroupTextField.inputAccessoryView = toolBar
-        }
-        @objc func action() {
-              view.endEditing(true)
         }
 
         func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

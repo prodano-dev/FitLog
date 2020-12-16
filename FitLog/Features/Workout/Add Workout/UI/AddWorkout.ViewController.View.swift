@@ -117,6 +117,7 @@ extension Workout.Add {
             let tableView = UITableView()
             tableView.translatesAutoresizingMaskIntoConstraints = false
             tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+            tableView.separatorStyle = .none
             return tableView
         }()
 
