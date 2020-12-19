@@ -58,12 +58,17 @@ extension Data {
 
     public struct Exercise {
         let name: String
-        var setAndRep: [setAndRep]?
-        let weight: Double?
+        var set: [repAndWeight]?
 
-        public struct setAndRep {
-            var set: Int
+        var totalSets: Int {
+
+            guard let amount = set?.count else { return 1 }
+            return amount
+        }
+
+        public struct repAndWeight {
             var rep: Int
+            var weight: Double
         }
     }
 

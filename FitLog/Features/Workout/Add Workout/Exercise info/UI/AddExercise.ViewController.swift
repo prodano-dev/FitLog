@@ -33,8 +33,6 @@ extension Workout.Add.Exercise {
            _view = view
         }
 
-        public var setAmount = 1
-
         override func viewDidLoad() {
 
             title = viewModel.workout.workoutName
@@ -53,10 +51,25 @@ extension Workout.Add.Exercise {
 
         @objc private func didTappedSaveButton() {
             print(viewModel.workout)
+            let cell = _view.exerciseTableView.visibleCells as! [Workout.Add.Exercise.View.Cell]
+
+            for count in cell.indices {
+                let currentCell = cell[count]
+
+                let repandset = Data.Exercise.repAndWeight(
+                        rep: Int(currentCell.repsTextField.text!)!,
+                        weight: Double(currentCell.weightTextField.text!)!
+                    )
+
+                viewModel.workout.exercises[count].set!.append(repandset)
+
+            }
+            print("----------------")
+            print(viewModel.workout)
         }
 
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return viewModel.workout.exercises[section].setAndRep!.count
+            return viewModel.workout.exercises[section].set!.count
         }
 
         func numberOfSections(in tableView: UITableView) -> Int {
@@ -65,6 +78,7 @@ extension Workout.Add.Exercise {
 
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ExerciseCell") as! Workout.Add.Exercise.View.Cell
+            cell.setLabel.text = String(indexPath.row + 1)
             return cell
         }
 
@@ -75,7 +89,11 @@ extension Workout.Add.Exercise {
         func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
             let view = Workout.Add.Exercise.FooterView()
             view.addButton.tag = section
-            view.addButton.addTarget(self, action: #selector(didTappedAddButton(_:)), for: .touchUpInside)
+            view.addButton.addTarget(
+                self,
+                action: #selector(didTappedAddButton(_:)),
+                for: .touchUpInside
+            )
             return view
 
         }
@@ -86,19 +104,19 @@ extension Workout.Add.Exercise {
 
         @objc private func didTappedAddButton(_ sender: UIButton) {
 
-            var exercise = viewModel.workout.exercises[sender.tag].setAndRep!
+            var exercise = viewModel.workout.exercises[sender.tag].set!
 
             let indexPath = IndexPath(row: exercise.count - 1, section: 0)
             let cell = _view.exerciseTableView.cellForRow(at: indexPath)
                 as! Workout.Add.Exercise.View.Cell
 
             let addRow = IndexPath(row: exercise.count, section: sender.tag)
-            let repandset = Data.Exercise.setAndRep(
-                set: Int(cell.setTextField.text!)!,
-                rep: Int(cell.repsTextField.text!)!
+            let repandset = Data.Exercise.repAndWeight(
+                rep: Int(cell.repsTextField.text!)!,
+                weight: Double(cell.weightTextField.text!)!
             )
 
-            viewModel.workout.exercises[sender.tag].setAndRep!.append(repandset)
+            viewModel.workout.exercises[sender.tag].set!.append(repandset)
             _view.exerciseTableView.insertRows(at: [addRow], with: .automatic)
         }
 

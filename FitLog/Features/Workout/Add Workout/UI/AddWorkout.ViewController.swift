@@ -69,7 +69,7 @@ extension Workout.Add {
             let workout = Data.Workout(
                 workoutName: _view.workoutNameTextField.text!,
                 exercises: viewModel.exercises.map({
-                    Data.Exercise(name: $0, setAndRep: [Data.Exercise.setAndRep(set: 1, rep: 12)], weight: 0)
+                    Data.Exercise(name: $0, set: [Data.Exercise.repAndWeight(rep: 1, weight: 12)])
                 }),
                 muscleGroup: .Abdominals)
 

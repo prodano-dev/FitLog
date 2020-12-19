@@ -17,8 +17,7 @@ extension Workout.Edit {
                 exercises: [
                     Data.Exercise(
                         name: "Bencpress",
-                        setAndRep: [Data.Exercise.setAndRep(set: 1, rep: 8),Data.Exercise.setAndRep(set: 2, rep: 8)],
-                        weight: 200)
+                        set: [Data.Exercise.repAndWeight(rep: 1, weight: 8),Data.Exercise.repAndWeight(rep: 2, weight: 8)])
                 ],
                 muscleGroup: .Chest)
         

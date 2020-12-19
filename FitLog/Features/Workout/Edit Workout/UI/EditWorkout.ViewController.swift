@@ -44,8 +44,8 @@ extension Workout.Edit {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell") as! Workout.Edit.View.Cell
             let workout = viewModel.testData.exercises[indexPath.row]
             cell.exerciseNameLabel.text = workout.name
-            cell.repsLabel.text = "\(workout.setAndRep?[indexPath.row].rep)"
-            cell.setsLabel.text = "\(workout.setAndRep?[indexPath.row].set)"
+            cell.repsLabel.text = "\(workout.set?[indexPath.row].rep)"
+            cell.setsLabel.text = "\(workout.set?[indexPath.row].weight)"
             return cell
         }
     }
