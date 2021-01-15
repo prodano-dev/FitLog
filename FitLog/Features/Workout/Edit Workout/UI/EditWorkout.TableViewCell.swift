@@ -18,6 +18,10 @@ extension Workout.Edit.View {
             contentView.addSubview(repsLabel)
             contentView.addSubview(setsLabel)
 
+            contentView.layer.cornerRadius = 15
+            contentView.layer.masksToBounds = true
+            contentView.backgroundColor = .systemGray6
+
 
             //
             // Layout
@@ -25,10 +29,23 @@ extension Workout.Edit.View {
             let views = ["exerciseNameLabel": exerciseNameLabel, "repsLabel": repsLabel, "setsLabel": setsLabel
             ]
 
-            NSLayoutConstraint.activate(NSLayoutConstraint.constraints(
-                                            withVisualFormat: "H:|-(5)-[exerciseNameLabel]-(5)-[repsLabel]-(5)-[setsLabel]-|", options: [], metrics: nil, views: views))
+            NSLayoutConstraint.activate(NSLayoutConstraint.constraints(                        withVisualFormat:
+                "V:|-(5)-[exerciseNameLabel]-(10)-[repsLabel]-(10)-|",
+                options: [], metrics: nil, views: views))
 
+            NSLayoutConstraint.activate(NSLayoutConstraint.constraints(                        withVisualFormat:
+                "H:|-(10)-[exerciseNameLabel]",
+                options: [], metrics: nil, views: views))
 
+            NSLayoutConstraint.activate(NSLayoutConstraint.constraints(                        withVisualFormat:
+                "H:|-(10)-[repsLabel]-(5)-[setsLabel]",
+                options: [], metrics: nil, views: views))
+
+            NSLayoutConstraint.activate([NSLayoutConstraint.init(
+              item: repsLabel, attribute: .centerY, relatedBy: .equal,
+              toItem: setsLabel,
+              attribute: .centerY, multiplier: 1.0, constant: 0)
+            ])
 
         }
 

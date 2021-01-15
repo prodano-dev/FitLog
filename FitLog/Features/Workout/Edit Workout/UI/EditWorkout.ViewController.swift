@@ -31,11 +31,6 @@ extension Workout.Edit {
 
         }
 
-        func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-            return Workout.Edit.TableHeader()
-
-        }
-
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return viewModel.testData.exercises.count
         }
@@ -44,8 +39,8 @@ extension Workout.Edit {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell") as! Workout.Edit.View.Cell
             let workout = viewModel.testData.exercises[indexPath.row]
             cell.exerciseNameLabel.text = workout.name
-            cell.repsLabel.text = "\(workout.set?[indexPath.row].rep)"
-            cell.setsLabel.text = "\(workout.set?[indexPath.row].weight)"
+            cell.repsLabel.text = "\(workout.averageRep) reps"
+            cell.setsLabel.text = "\(workout.totalSets) sets"
             return cell
         }
     }

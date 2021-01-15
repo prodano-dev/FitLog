@@ -44,7 +44,7 @@ extension Workout.Edit {
                   options: [], metrics: nil, views: views)
             )
             NSLayoutConstraint.activate(NSLayoutConstraint.constraints(
-                  withVisualFormat: "H:|-(0)-[workoutTableView]-(0)-|",
+                  withVisualFormat: "H:|-(10)-[workoutTableView]-(10)-|",
                   options: [], metrics: nil, views: views)
             )
             NSLayoutConstraint.activate(NSLayoutConstraint.constraints(
@@ -144,8 +144,7 @@ extension Workout.Edit {
             let table = UITableView()
             table.translatesAutoresizingMaskIntoConstraints = false
             table.register(Workout.Edit.View.Cell.self, forCellReuseIdentifier: "TableCell")
-            table.layer.borderWidth = 2
-            table.layer.borderColor = UIColor(named: "DPBrown")?.cgColor
+            table.separatorStyle = .none
             return table
         }()
 

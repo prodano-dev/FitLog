@@ -66,6 +66,14 @@ extension Data {
             return amount
         }
 
+        var averageRep: Int {
+            var amount = 0
+            for rep in set! {
+                amount += rep.rep
+            }
+            return amount / totalSets
+        }
+
         public struct repAndWeight {
             var rep: Int
             var weight: Double

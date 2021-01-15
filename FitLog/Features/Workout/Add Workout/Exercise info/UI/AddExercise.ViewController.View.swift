@@ -72,7 +72,7 @@ extension Workout.Add.Exercise {
             button.translatesAutoresizingMaskIntoConstraints = false
             button.setTitle("ADD SET", for: .normal)
             button.titleLabel?.tintColor = UIColor(named: "DPWhite")
-            button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+            button.titleLabel?.font = UIFont(name: "HelveticaNeue-CondensedBlack", size: 20)
             button.backgroundColor = UIColor(named: "DPBlue")
             button.layer.cornerRadius = 20
             button.layer.masksToBounds = true

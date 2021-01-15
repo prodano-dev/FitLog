@@ -52,7 +52,7 @@ extension Workout.Add.Exercise {
         @objc private func didTappedSaveButton() {
             print(viewModel.workout)
             let cell = _view.exerciseTableView.visibleCells as! [Workout.Add.Exercise.View.Cell]
-
+           
             for count in cell.indices {
                 let currentCell = cell[count]
 
@@ -61,7 +61,7 @@ extension Workout.Add.Exercise {
                         weight: Double(currentCell.weightTextField.text!)!
                     )
 
-                viewModel.workout.exercises[count].set!.append(repandset)
+                viewModel.workout.exercises[currentCell.tag].set!.append(repandset)
 
             }
             print("----------------")
@@ -79,6 +79,7 @@ extension Workout.Add.Exercise {
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ExerciseCell") as! Workout.Add.Exercise.View.Cell
             cell.setLabel.text = String(indexPath.row + 1)
+            cell.tag = indexPath.section
             return cell
         }
 

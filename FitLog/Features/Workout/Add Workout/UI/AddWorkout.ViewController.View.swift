@@ -56,11 +56,12 @@ extension Workout.Add {
 
         public let workoutNameTextField: UITextField = {
             let textField = UITextField()
-            textField.placeholder = "Workout name"
+            textField.placeholder = "WORKOUT NAME"
             textField.translatesAutoresizingMaskIntoConstraints = false
             textField.autocapitalizationType = .allCharacters
             textField.layer.borderWidth = 1
             textField.layer.borderColor = UIColor(named: "DPBlue")?.cgColor
+            textField.font = UIFont(name: "HelveticaNeue-CondensedBlack", size: 17)
             return textField
         }()
 
@@ -72,19 +73,21 @@ extension Workout.Add {
 
         public let muscleGroupTextField: UITextField = {
             let textField = UITextField()
-            textField.placeholder = "Muscle group"
+            textField.placeholder = "MUSCLE GROUP"
             textField.translatesAutoresizingMaskIntoConstraints = false
             textField.autocapitalizationType = .allCharacters
             textField.layer.borderWidth = 1
             textField.layer.borderColor = UIColor(named: "DPBlue")?.cgColor
+            textField.font = UIFont(name: "HelveticaNeue-CondensedBlack", size: 17)
             return textField
         }()
 
         public let exerciseNameTextField: UITextField = {
             let textField = UITextField()
-            textField.placeholder = "Exercise.."
+            textField.placeholder = "EXERCISE.."
             textField.translatesAutoresizingMaskIntoConstraints = false
             textField.autocapitalizationType = .allCharacters
+            textField.font = UIFont(name: "HelveticaNeue-CondensedBlack", size: 17)
             textField.layer.borderWidth = 1
             textField.layer.borderColor = UIColor(named: "DPBlue")?.cgColor
             textField.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
@@ -96,7 +99,7 @@ extension Workout.Add {
             button.translatesAutoresizingMaskIntoConstraints = false
             button.setTitle("ADD", for: .normal)
             button.titleLabel?.tintColor = UIColor(named: "DPWhite")
-            button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+            button.titleLabel?.font = UIFont(name: "HelveticaNeue-CondensedBlack", size: 17)
             button.backgroundColor = UIColor(named: "DPBlue")
             button.layer.cornerRadius = 5
             button.layer.masksToBounds = true

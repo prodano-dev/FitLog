@@ -14,12 +14,12 @@ extension Home.View {
         override init(frame: CGRect) {
             super.init(frame: .zero)
 
-            backgroundImage.addSubview(tintView)
-            backgroundImage.addSubview(workoutNameLabel)
-            backgroundImage.addSubview(stackView)
-            backgroundImage.addSubview(startButton)
-
             addSubview(backgroundImage)
+            contentView.addSubview(tintView)
+            contentView.addSubview(workoutNameLabel)
+            contentView.addSubview(stackView)
+            contentView.addSubview(startButton)
+
 
             layer.cornerRadius = 25
             layer.shadowColor = UIColor.black.cgColor
@@ -85,15 +85,13 @@ extension Home.View {
                 withVisualFormat: "V:[startButton]-(10)-|",
                 options:[], metrics: nil, views: views)
             )
-
-
         }
 
         public let workoutNameLabel: UILabel = {
             let label = UILabel()
             label.textColor = UIColor(named: "DPWhite")
             label.translatesAutoresizingMaskIntoConstraints = false
-            label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+            label.font = UIFont(name: "HelveticaNeue-CondensedBlack", size: 24)
             return label
         }()
 
@@ -101,7 +99,7 @@ extension Home.View {
             let label = UILabel()
             label.translatesAutoresizingMaskIntoConstraints = false
             label.textColor = UIColor(named: "DPWhite")
-            label.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+            label.font = UIFont(name: "HelveticaNeue-Medium", size: 17)
             return label
         }()
 
@@ -109,7 +107,7 @@ extension Home.View {
             let label = UILabel()
             label.textColor = UIColor(named: "DPWhite")
             label.translatesAutoresizingMaskIntoConstraints = false
-            label.font = UIFont.systemFont(ofSize: 17, weight: .light)
+            label.font = UIFont(name: "HelveticaNeue-Regular", size: 13)
             return label
         }()
 
@@ -128,11 +126,14 @@ extension Home.View {
             view.layer.cornerRadius = 25
             view.layer.masksToBounds = true
             view.image = UIImage(named: "benchpress")
+            view.backgroundColor = .green
             return view
         }()
         private let tintView: UIView = {
             let view = UIView()
             view.translatesAutoresizingMaskIntoConstraints = false
+            view.layer.cornerRadius = 25
+            view.layer.masksToBounds = true
             view.backgroundColor = UIColor(named: "DPGray")?.withAlphaComponent(0.38)
             return view
         }()
@@ -142,7 +143,7 @@ extension Home.View {
             button.translatesAutoresizingMaskIntoConstraints = false
             button.setTitle("START", for: .normal)
             button.titleLabel?.tintColor = UIColor(named: "DPWhite")
-            button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+            button.titleLabel?.font = UIFont(name: "HelveticaNeue-CondensedBlack", size: 17)
             button.backgroundColor = UIColor(named: "DPBlue")
             button.layer.cornerRadius = 20
             button.layer.masksToBounds = true

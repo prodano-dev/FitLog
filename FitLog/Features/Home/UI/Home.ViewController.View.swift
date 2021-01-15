@@ -27,9 +27,11 @@ extension Home {
                 options:[], metrics: nil, views: views)
             )
             NSLayoutConstraint.activate(NSLayoutConstraint.constraints(
-                withVisualFormat: "V:|-(100)-[workoutCollection]-(0)-|",
+                withVisualFormat: "V:|-(0)-[workoutCollection]-(0)-|",
                 options:[], metrics: nil, views: views)
             )
+
+            NSLayoutConstraint.activate([NSLayoutConstraint.init(item: workoutCollection, attribute: .top, relatedBy: .equal, toItem: self.safeAreaLayoutGuide, attribute: .top, multiplier: 1.0, constant: 0)])
         }
 
         public let workoutCollection: UICollectionView = {
@@ -41,6 +43,14 @@ extension Home {
             collectionView.register(Home.View.Cell.self, forCellWithReuseIdentifier: "Cell")
             collectionView.backgroundColor = .systemBackground
             return collectionView
+        }()
+
+        public let tableView: UITableView = {
+            let tableview = UITableView()
+            tableview.translatesAutoresizingMaskIntoConstraints = false
+            tableview.register(Home.View.TableViewCell.self,
+                               forCellReuseIdentifier: "Cell")
+            return tableview
         }()
         
         required init?(coder: NSCoder) {

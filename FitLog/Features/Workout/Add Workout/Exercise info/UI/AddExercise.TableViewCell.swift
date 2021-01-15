@@ -76,6 +76,9 @@ extension Workout.Add.Exercise.View {
             label.backgroundColor = UIColor(named: "DPBlue")
             label.font = UIFont.systemFont(ofSize: 15)
             label.textColor = UIColor(named: "DPWhite")
+            label.layer.masksToBounds = true
+            label.layer.cornerRadius = 5
+            label.layer.frame.size = CGSize(width: 5, height: 5)
             return label
         }()
 
