@@ -78,7 +78,7 @@ extension Workout.Add.Exercise.View {
             label.textColor = UIColor(named: "DPWhite")
             label.layer.masksToBounds = true
             label.layer.cornerRadius = 5
-            label.layer.frame.size = CGSize(width: 5, height: 5)
+            label.layer.frame.size = CGSize(width: 55, height: 55)
             return label
         }()
 

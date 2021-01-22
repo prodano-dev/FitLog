@@ -58,7 +58,8 @@ extension Data {
 
     public struct Exercise {
         let name: String
-        var set: [repAndWeight]?
+        var set: [RepAndWeight]?
+        var superSet: SuperSet? = nil
 
         var totalSets: Int {
 
@@ -74,7 +75,12 @@ extension Data {
             return amount / totalSets
         }
 
-        public struct repAndWeight {
+        public struct SuperSet {
+            let name: String
+            var repAndWeight: RepAndWeight
+        }
+
+        public struct RepAndWeight {
             var rep: Int
             var weight: Double
         }

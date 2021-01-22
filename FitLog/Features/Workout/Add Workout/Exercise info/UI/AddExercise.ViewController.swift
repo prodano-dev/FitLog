@@ -50,22 +50,23 @@ extension Workout.Add.Exercise {
         }
 
         @objc private func didTappedSaveButton() {
-            print(viewModel.workout)
-            let cell = _view.exerciseTableView.visibleCells as! [Workout.Add.Exercise.View.Cell]
-           
-            for count in cell.indices {
-                let currentCell = cell[count]
-
-                let repandset = Data.Exercise.repAndWeight(
-                        rep: Int(currentCell.repsTextField.text!)!,
-                        weight: Double(currentCell.weightTextField.text!)!
-                    )
-
-                viewModel.workout.exercises[currentCell.tag].set!.append(repandset)
-
-            }
-            print("----------------")
-            print(viewModel.workout)
+            dismiss(animated: true, completion: nil)
+//            print(viewModel.workout)
+//            let cell = _view.exerciseTableView.visibleCells as! [Workout.Add.Exercise.View.Cell]
+//           
+//            for count in cell.indices {
+//                let currentCell = cell[count]
+//
+//                let repandset = Data.Exercise.RepAndWeight(
+//                        rep: Int(currentCell.repsTextField.text!)!,
+//                        weight: Double(currentCell.weightTextField.text!)!
+//                    )
+//
+//                viewModel.workout.exercises[currentCell.tag].set!.append(repandset)
+//
+//            }
+//            print("----------------")
+//            print(viewModel.workout)
         }
 
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -112,7 +113,7 @@ extension Workout.Add.Exercise {
                 as! Workout.Add.Exercise.View.Cell
 
             let addRow = IndexPath(row: exercise.count, section: sender.tag)
-            let repandset = Data.Exercise.repAndWeight(
+            let repandset = Data.Exercise.RepAndWeight(
                 rep: Int(cell.repsTextField.text!)!,
                 weight: Double(cell.weightTextField.text!)!
             )

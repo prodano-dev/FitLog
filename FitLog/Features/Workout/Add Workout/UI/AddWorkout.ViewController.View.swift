@@ -14,11 +14,14 @@ extension Workout.Add {
         override init(frame: CGRect) {
             super.init(frame: .zero)
 
-            muscleGroupTextField.inputView = muscleGroupPicker
+            workoutNameTextField.placeHolder = "WORKOUT NAME"
+            exerciseNameTextField.placeHolder = "EXERCISE NAME"
 
+            muscleGroupTextField.inputView = muscleGroupPicker
             addSubview(workoutNameTextField)
 //            addSubview(muscleGroupPicker)
-            addSubview(stackView)
+            addSubview(exerciseNameTextField)
+            addSubview(addButton)
             addSubview(exerciseTableView)
             addSubview(muscleGroupTextField)
 
@@ -29,42 +32,46 @@ extension Workout.Add {
             //
             let views = ["workoutNameTextField": workoutNameTextField,
                          "muscleGroupPicker": muscleGroupPicker,
-                         "stackView": stackView,
                          "exerciseNameTextField": exerciseNameTextField,
                          "addButton": addButton,
-                         "exerciseTableView": exerciseTableView, "muscleGroupTextField":muscleGroupTextField
+                         "exerciseTableView": exerciseTableView,
+                         "muscleGroupTextField":muscleGroupTextField
             ]
 
             NSLayoutConstraint.activate(NSLayoutConstraint.constraints(
-                                            withVisualFormat: "V:[workoutNameTextField]-(10)-[muscleGroupTextField]-(5)-[stackView]-(5)-[exerciseTableView]-(5)-|", options: [], metrics: nil, views: views))
+               withVisualFormat:"V:[workoutNameTextField]-(5)-[muscleGroupTextField]-(5)-[exerciseNameTextField]-(5)-[exerciseTableView]-(5)-|",
+                options: [], metrics: nil, views: views)
+            )
             NSLayoutConstraint.activate(NSLayoutConstraint.constraints(
-                                            withVisualFormat: "H:|-(20)-[workoutNameTextField]-(50)-|", options: [], metrics: nil, views: views))
+               withVisualFormat: "H:|-(20)-[workoutNameTextField]-(50)-|",
+               options: [], metrics: nil, views: views)
+            )
             NSLayoutConstraint.activate(NSLayoutConstraint.constraints(
-                                            withVisualFormat: "H:|-(20)-[stackView]-(50)-|", options: [], metrics: nil, views: views))
-
+               withVisualFormat: "H:|-(20)-[exerciseNameTextField]-(5)-[addButton(==60)]-(5)-|",
+               options: [], metrics: nil, views: views)
+            )
             NSLayoutConstraint.activate(NSLayoutConstraint.constraints(
-                                            withVisualFormat: "H:|-(0)-[exerciseTableView]-(0)-|", options: [], metrics: nil, views: views))
+               withVisualFormat: "H:|-(0)-[exerciseTableView]-(0)-|",
+               options: [], metrics: nil, views: views)
+            )
 
             NSLayoutConstraint.activate([NSLayoutConstraint.init(
-                                            item: workoutNameTextField, attribute: .top, relatedBy: .equal, toItem: safeAreaLayoutGuide, attribute: .top, multiplier: 1.0, constant: 24),
-                                         NSLayoutConstraint.init(
-                                              item: muscleGroupTextField, attribute: .left, relatedBy: .equal, toItem: workoutNameTextField, attribute: .left, multiplier: 1.0, constant: 0)
+               item: workoutNameTextField, attribute: .top, relatedBy: .equal,
+               toItem: safeAreaLayoutGuide,
+               attribute: .top, multiplier: 1.0, constant: 24),
+            NSLayoutConstraint.init(
+                item: muscleGroupTextField, attribute: .left, relatedBy: .equal,
+                toItem: workoutNameTextField,
+                attribute: .left, multiplier: 1.0, constant: 0),
+            NSLayoutConstraint.init(
+                item: addButton, attribute: .centerY, relatedBy: .equal,
+                toItem: exerciseNameTextField,
+                attribute: .centerY, multiplier: 1.0, constant: 0)
             ])
-
-
         }
-
-        public let workoutNameTextField: UITextField = {
-            let textField = UITextField()
-            textField.placeholder = "WORKOUT NAME"
-            textField.translatesAutoresizingMaskIntoConstraints = false
-            textField.autocapitalizationType = .allCharacters
-            textField.layer.borderWidth = 1
-            textField.layer.borderColor = UIColor(named: "DPBlue")?.cgColor
-            textField.font = UIFont(name: "HelveticaNeue-CondensedBlack", size: 17)
-            return textField
-        }()
-
+        
+        public let workoutNameTextField = TextField()
+        
         public let muscleGroupPicker: UIPickerView = {
             let picker = UIPickerView()
             picker.translatesAutoresizingMaskIntoConstraints = false
@@ -82,17 +89,7 @@ extension Workout.Add {
             return textField
         }()
 
-        public let exerciseNameTextField: UITextField = {
-            let textField = UITextField()
-            textField.placeholder = "EXERCISE.."
-            textField.translatesAutoresizingMaskIntoConstraints = false
-            textField.autocapitalizationType = .allCharacters
-            textField.font = UIFont(name: "HelveticaNeue-CondensedBlack", size: 17)
-            textField.layer.borderWidth = 1
-            textField.layer.borderColor = UIColor(named: "DPBlue")?.cgColor
-            textField.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
-            return textField
-        }()
+        public let exerciseNameTextField = TextField()
 
         public let addButton: UIButton = {
             let button = UIButton()
@@ -104,22 +101,14 @@ extension Workout.Add {
             button.layer.cornerRadius = 5
             button.layer.masksToBounds = true
             button.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-            button.contentEdgeInsets = UIEdgeInsets(top: 16.0 - 16.0 / 3.0, left: 16.0 - 16.0 / 3.0, bottom: 16.0 - 16.0 / 3.0 , right: 16.0 - 16.0 / 3.0)
+//            button.contentEdgeInsets = UIEdgeInsets(top: 10.0 - 10.0 / 3.0, left: 10.0 - 16.0 / 3.0, bottom: 10.0 - 10.0 / 3.0 , right: 10.0 - 10.0 / 3.0)
             return button
-        }()
-
-        private lazy var stackView: UIStackView = {
-            let stack = UIStackView(arrangedSubviews: [exerciseNameTextField, addButton])
-            stack.axis = .horizontal
-            stack.spacing = 2
-            stack.translatesAutoresizingMaskIntoConstraints = false
-            return stack
         }()
 
         public let exerciseTableView: UITableView = {
             let tableView = UITableView()
             tableView.translatesAutoresizingMaskIntoConstraints = false
-            tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+            tableView.register(Workout.Add.View.Cell.self, forCellReuseIdentifier: "TableCell")
             tableView.separatorStyle = .none
             return tableView
         }()

@@ -17,7 +17,6 @@ extension Home {
 
         let viewModel = Home.ViewModel()
 
-
         private var _view: View!
 
         public override func loadView() {
@@ -44,10 +43,8 @@ extension Home {
             ]
             title = "WORKOUTS"
 
-
             _view.workoutCollection.delegate = self
             _view.workoutCollection.dataSource = self
-
         }
 
         override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -76,6 +73,7 @@ extension Home {
         @objc private func didTappedPlusButton() {
 
             present(UINavigationController(rootViewController: Workout.Add.ViewController()), animated: true)
+
         }
 
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -105,10 +103,8 @@ extension Home {
 
         func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
             let vc = Workout.Edit.ViewController()
-            vc.transitioningDelegate = self
-//            vc.modalPresentationStyle = .fullScreen
-//            present(vc, animated: true)
-            navigationController?.present(vc, animated: true)
+            present(vc, animated: true)
+
 //            navigationController?.pushViewController(vc, animated: true)
         }
 

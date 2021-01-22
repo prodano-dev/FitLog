@@ -24,11 +24,12 @@
 		EB563FE22585633800D9CFCE /* EditWorkout.ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB563FE12585633800D9CFCE /* EditWorkout.ViewController.swift */; };
 		EB563FE52585713000D9CFCE /* EditWorkout.TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB563FE42585713000D9CFCE /* EditWorkout.TableViewCell.swift */; };
 		EB6F6635258A4BBE00B1D329 /* AddExercise.ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6F6634258A4BBE00B1D329 /* AddExercise.ViewModel.swift */; };
-		EBB06CE125A6F93E00CBF915 /* Home.ViewController.View.TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB06CE025A6F93E00CBF915 /* Home.ViewController.View.TableViewCell.swift */; };
+		EBDA2A2E25B9D85700A80C7B /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDA2A2D25B9D85700A80C7B /* TextField.swift */; };
 		EBDBB754258645D000272ABE /* AddWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDBB753258645D000272ABE /* AddWorkout.swift */; };
 		EBDBB759258645FB00272ABE /* AddWorkout.ViewController.View.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDBB758258645FB00272ABE /* AddWorkout.ViewController.View.swift */; };
 		EBDBB75C2586460700272ABE /* AddWorkout.ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDBB75B2586460700272ABE /* AddWorkout.ViewController.swift */; };
 		EBDBB75F2586483B00272ABE /* AddWorkout.ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDBB75E2586483B00272ABE /* AddWorkout.ViewModel.swift */; };
+		EBE4568325B619AC00D5FDE5 /* AddWorkout.ViewController.View.Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE4568225B619AC00D5FDE5 /* AddWorkout.ViewController.View.Cell.swift */; };
 		EBED4C4625AF651B00D7D2BA /* PopTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBED4C4525AF651B00D7D2BA /* PopTransition.swift */; };
 		EBF53B9925893A41008CC126 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF53B9825893A41008CC126 /* Exercise.swift */; };
 		EBF53BA025893A8D008CC126 /* AddExercise.ViewController.View.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF53B9F25893A8D008CC126 /* AddExercise.ViewController.View.swift */; };
@@ -56,11 +57,12 @@
 		EB563FE12585633800D9CFCE /* EditWorkout.ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWorkout.ViewController.swift; sourceTree = "<group>"; };
 		EB563FE42585713000D9CFCE /* EditWorkout.TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWorkout.TableViewCell.swift; sourceTree = "<group>"; };
 		EB6F6634258A4BBE00B1D329 /* AddExercise.ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExercise.ViewModel.swift; sourceTree = "<group>"; };
-		EBB06CE025A6F93E00CBF915 /* Home.ViewController.View.TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.ViewController.View.TableViewCell.swift; sourceTree = "<group>"; };
+		EBDA2A2D25B9D85700A80C7B /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		EBDBB753258645D000272ABE /* AddWorkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkout.swift; sourceTree = "<group>"; };
 		EBDBB758258645FB00272ABE /* AddWorkout.ViewController.View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkout.ViewController.View.swift; sourceTree = "<group>"; };
 		EBDBB75B2586460700272ABE /* AddWorkout.ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkout.ViewController.swift; sourceTree = "<group>"; };
 		EBDBB75E2586483B00272ABE /* AddWorkout.ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkout.ViewModel.swift; sourceTree = "<group>"; };
+		EBE4568225B619AC00D5FDE5 /* AddWorkout.ViewController.View.Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkout.ViewController.View.Cell.swift; sourceTree = "<group>"; };
 		EBED4C4525AF651B00D7D2BA /* PopTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopTransition.swift; sourceTree = "<group>"; };
 		EBF53B9825893A41008CC126 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		EBF53B9F25893A8D008CC126 /* AddExercise.ViewController.View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExercise.ViewController.View.swift; sourceTree = "<group>"; };
@@ -134,7 +136,6 @@
 				EB148B322585266500BD9CCF /* Home.ViewController.View.swift */,
 				EB148B362585267700BD9CCF /* Home.ViewController.swift */,
 				EB563FBC25852F3F00D9CFCE /* Home.ViewController.View.CollectionCell.swift */,
-				EBB06CE025A6F93E00CBF915 /* Home.ViewController.View.TableViewCell.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -229,11 +230,20 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		EBDA2A2C25B9D83900A80C7B /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				EBDA2A2D25B9D85700A80C7B /* TextField.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		EBDBB756258645E300272ABE /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				EBDBB758258645FB00272ABE /* AddWorkout.ViewController.View.swift */,
 				EBDBB75B2586460700272ABE /* AddWorkout.ViewController.swift */,
+				EBE4568225B619AC00D5FDE5 /* AddWorkout.ViewController.View.Cell.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -249,6 +259,7 @@
 		EBED4C4225AF64EA00D7D2BA /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				EBDA2A2C25B9D83900A80C7B /* Components */,
 				EBED4C4425AF64F800D7D2BA /* Transitions */,
 				EBED4C4325AF64F000D7D2BA /* Style */,
 			);
@@ -372,13 +383,14 @@
 				EB563FCB2585605300D9CFCE /* Data.Workout.swift in Sources */,
 				EB563FC52585604500D9CFCE /* Data.swift in Sources */,
 				EBED4C4625AF651B00D7D2BA /* PopTransition.swift in Sources */,
+				EBDA2A2E25B9D85700A80C7B /* TextField.swift in Sources */,
 				EB563FE52585713000D9CFCE /* EditWorkout.TableViewCell.swift in Sources */,
 				EB148B332585266500BD9CCF /* Home.ViewController.View.swift in Sources */,
 				EBDBB75F2586483B00272ABE /* AddWorkout.ViewModel.swift in Sources */,
-				EBB06CE125A6F93E00CBF915 /* Home.ViewController.View.TableViewCell.swift in Sources */,
 				EB563FBD25852F3F00D9CFCE /* Home.ViewController.View.CollectionCell.swift in Sources */,
 				EBDBB75C2586460700272ABE /* AddWorkout.ViewController.swift in Sources */,
 				EB148B372585267700BD9CCF /* Home.ViewController.swift in Sources */,
+				EBE4568325B619AC00D5FDE5 /* AddWorkout.ViewController.View.Cell.swift in Sources */,
 				EBF53B9925893A41008CC126 /* Exercise.swift in Sources */,
 				EB563FD22585615600D9CFCE /* Workout.swift in Sources */,
 				EB148B152585241D00BD9CCF /* AppDelegate.swift in Sources */,

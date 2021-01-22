@@ -58,23 +58,27 @@ extension Workout.Add {
         @objc private func didTappedAddButton() {
 
             let exercise = _view.exerciseNameTextField.text
-            _view.exerciseNameTextField.text?.removeAll()
+            _view.exerciseNameTextField.text
 
-            viewModel.exercises.append(exercise!)
+            viewModel.exercises.append(exercise)
             _view.exerciseTableView.reloadData()
         }
 
         @objc private func didTappedSaveButton() {
 
-            let workout = Data.Workout(
-                workoutName: _view.workoutNameTextField.text!,
-                exercises: viewModel.exercises.map({
-                    Data.Exercise(name: $0, set: [Data.Exercise.repAndWeight(rep: 1, weight: 12)])
-                }),
-                muscleGroup: .Abdominals)
-
-            let exviewModel = Workout.Add.Exercise.ViewModel(workout: workout)
-            navigationController?.pushViewController(Workout.Add.Exercise.ViewController(viewModel: exviewModel), animated: true)
+//            let workout = Data.Workout(
+//                workoutName: _view.workoutNameTextField.text!,
+//                exercises: viewModel.exercises.map({
+//                    Data.Exercise(
+//                        name: $0,
+//                        set: [Data.Exercise.RepAndWeight(rep: 1, weight: 12)],
+//                        superSet: nil
+//                        )
+//                }),
+//                muscleGroup: .Abdominals)
+//
+//            let exviewModel = Workout.Add.Exercise.ViewModel(workout: workout)
+//            navigationController?.pushViewController(Workout.Add.Exercise.ViewController(viewModel: exviewModel), animated: true)
         }
 
         @objc private func didTappedCancelButton() {
@@ -87,11 +91,22 @@ extension Workout.Add {
         }
 
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) as! Workout.Add.View.Cell
             let exercise = viewModel.exercises[indexPath.row]
-            cell.textLabel?.text = exercise
+            cell.supperSetButton.tag = indexPath.row
+            cell.supperSetButton.addTarget(self, action: #selector(didTappedSuperSetButton), for: .touchUpInside)
+            cell.exerciseNameLabel.text = exercise
             return cell
         }
+
+        @objc private func didTappedSuperSetButton(_ sender: UIButton) {
+            let indexPath = IndexPath(row: sender.tag, section: 0)
+            let cell = _view.exerciseTableView.cellForRow(at: indexPath) as! Workout.Add.View.Cell
+            cell.superSetNameLabel.text = "Wide Dips"
+            cell.superSetNameLabel.isHidden = false
+        }
+
+
 
         func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
             return "You can add sets and reps on the next view."
