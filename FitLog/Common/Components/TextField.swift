@@ -93,27 +93,24 @@ class TextField: UIControl, UITextFieldDelegate {
     public let placeHolderLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "HelveticaNeue-LightItalic", size: 15)
         label.textColor = .lightGray
-        label.text = "PlaceHoldertje"
         return label
     }()
 
     public let textField: UITextField = {
         let textField = UITextField()
+        textField.font = UIFont(name: "HelveticaNeue-Medium", size: 17)
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.addTarget(self, action: #selector(test), for: .editingChanged)
+        textField.addTarget(self, action: #selector(didInputText), for: .editingChanged)
         return textField
     }()
 
-    @objc private func test() {
+    @objc private func didInputText() {
         updateUI()
     }
 
     public let bottomLine = BottomLine()
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
         isActive = true
@@ -123,6 +120,9 @@ class TextField: UIControl, UITextFieldDelegate {
         isActive = false
     }
 
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
 class BottomLine: UIView {

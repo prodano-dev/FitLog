@@ -17,19 +17,21 @@ extension Workout.Add.Exercise.View {
             contentView.addSubview(repsTextField)
             contentView.addSubview(weightTextField)
             contentView.addSubview(setLabel)
+            contentView.addSubview(xLabel)
 
             //
             // Layout
             //
             let views = ["repsTextField": repsTextField,
                          "weightTextField": weightTextField,
-                         "setLabel":setLabel
+                         "setLabel":setLabel,
+                         "xLabel": xLabel
             ]
 
             NSLayoutConstraint.activate([NSLayoutConstraint.init(
                 item: repsTextField, attribute: .centerX, relatedBy: .equal,
                 toItem: self,
-                attribute: .centerX, multiplier: 1.0, constant: -25),
+                attribute: .centerX, multiplier: 1.0, constant: -35),
                                          NSLayoutConstraint.init(
                 item: repsTextField, attribute: .centerY, relatedBy: .equal,
                 toItem: self,
@@ -37,37 +39,47 @@ extension Workout.Add.Exercise.View {
                                          NSLayoutConstraint.init(
                 item: weightTextField, attribute: .centerX, relatedBy: .equal,
                 toItem: self,
-                attribute: .centerX, multiplier: 1.0, constant: 25),
+                attribute: .centerX, multiplier: 1.0, constant: 35),
                                         NSLayoutConstraint.init(
                 item: weightTextField, attribute: .centerY, relatedBy: .equal,
                 toItem: self,
                 attribute: .centerY, multiplier: 1.0, constant: 0),
+                                        NSLayoutConstraint.init(
+                item: xLabel, attribute: .centerX, relatedBy: .equal,
+                toItem: self,
+                attribute: .centerX, multiplier: 1.0, constant: 0),
+                                        NSLayoutConstraint.init(
+                item: xLabel, attribute: .centerY, relatedBy: .equal,
+                toItem: self,
+                attribute: .centerY, multiplier: 1.0, constant: 0),
             ])
 
-            NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:[repsTextField(20)]", options: [], metrics: nil, views: views))
-            NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:[weightTextField(20)]", options: [], metrics: nil, views: views))
-
-            NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:|-(5)-[setLabel]", options: [], metrics: nil, views: views))
-            NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(10)-[setLabel]", options: [], metrics: nil, views: views))
-
+            NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:|-(5)-[setLabel(25)]", options: [], metrics: nil, views: views))
+            NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(10)-[setLabel(25)]", options: [], metrics: nil, views: views))
         }
 
-        public let repsTextField: UITextField = {
-            let textField = UITextField()
-            textField.translatesAutoresizingMaskIntoConstraints = false
-            textField.keyboardType = .numberPad
-            textField.layer.borderWidth = 1
-            textField.layer.borderColor = UIColor(named: "DPBrown")?.cgColor
+        public let repsTextField: TextField = {
+            let textField = TextField()
+            textField.textField.keyboardType = .numberPad
+            textField.placeHolder = "Reps"
+            textField.textField.textAlignment = .center
             return textField
         }()
 
-        public let weightTextField: UITextField = {
-            let textField = UITextField()
-            textField.keyboardType = .numberPad
-            textField.translatesAutoresizingMaskIntoConstraints = false
-            textField.layer.borderWidth = 1
-            textField.layer.borderColor = UIColor(named: "DPBrown")?.cgColor
+        public let weightTextField: TextField = {
+            let textField = TextField()
+            textField.textField.keyboardType = .numberPad
+            textField.placeHolder = "Weight"
+            textField.textField.textAlignment = .center
             return textField
+        }()
+
+        private let xLabel: UILabel = {
+            let label = UILabel()
+            label.translatesAutoresizingMaskIntoConstraints = false
+            label.text = "X"
+            label.textColor = UIColor(named: "DPBlue")
+            return label
         }()
 
         public let setLabel: UILabel = {
@@ -75,10 +87,10 @@ extension Workout.Add.Exercise.View {
             label.translatesAutoresizingMaskIntoConstraints = false
             label.backgroundColor = UIColor(named: "DPBlue")
             label.font = UIFont.systemFont(ofSize: 15)
+            label.textAlignment = .center
             label.textColor = UIColor(named: "DPWhite")
             label.layer.masksToBounds = true
-            label.layer.cornerRadius = 5
-            label.layer.frame.size = CGSize(width: 55, height: 55)
+            label.layer.cornerRadius = 25 / 2
             return label
         }()
 

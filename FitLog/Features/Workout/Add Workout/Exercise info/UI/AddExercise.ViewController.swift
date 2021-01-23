@@ -114,8 +114,8 @@ extension Workout.Add.Exercise {
 
             let addRow = IndexPath(row: exercise.count, section: sender.tag)
             let repandset = Data.Exercise.RepAndWeight(
-                rep: Int(cell.repsTextField.text!)!,
-                weight: Double(cell.weightTextField.text!)!
+                rep: Int(cell.repsTextField.text)!,
+                weight: Double(cell.weightTextField.text)!
             )
 
             viewModel.workout.exercises[sender.tag].set!.append(repandset)

@@ -51,7 +51,11 @@ extension Workout.Add {
             _view.muscleGroupPicker.delegate = self
             _view.exerciseTableView.dataSource = self
             _view.exerciseTableView.delegate = self
-            _view.addButton.addTarget(self, action: #selector(didTappedAddButton), for: .touchUpInside)
+            _view.addButton.addTarget(
+                self,
+                action: #selector(didTappedAddButton),
+                for: .touchUpInside
+            )
 
         }
 
@@ -66,19 +70,19 @@ extension Workout.Add {
 
         @objc private func didTappedSaveButton() {
 
-//            let workout = Data.Workout(
-//                workoutName: _view.workoutNameTextField.text!,
-//                exercises: viewModel.exercises.map({
-//                    Data.Exercise(
-//                        name: $0,
-//                        set: [Data.Exercise.RepAndWeight(rep: 1, weight: 12)],
-//                        superSet: nil
-//                        )
-//                }),
-//                muscleGroup: .Abdominals)
-//
-//            let exviewModel = Workout.Add.Exercise.ViewModel(workout: workout)
-//            navigationController?.pushViewController(Workout.Add.Exercise.ViewController(viewModel: exviewModel), animated: true)
+            let workout = Data.Workout(
+                workoutName: _view.workoutNameTextField.text,
+                exercises: viewModel.exercises.map({
+                    Data.Exercise(
+                        name: $0,
+                        set: [Data.Exercise.RepAndWeight(rep: 1, weight: 12)],
+                        superSet: nil
+                        )
+                }),
+                muscleGroup: .Abdominals)
+
+            let exviewModel = Workout.Add.Exercise.ViewModel(workout: workout)
+            navigationController?.pushViewController(Workout.Add.Exercise.ViewController(viewModel: exviewModel), animated: true)
         }
 
         @objc private func didTappedCancelButton() {
@@ -106,8 +110,6 @@ extension Workout.Add {
             cell.superSetNameLabel.isHidden = false
         }
 
-
-
         func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
             return "You can add sets and reps on the next view."
         }
@@ -125,7 +127,7 @@ extension Workout.Add {
         }
 
         func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-            _view.muscleGroupTextField.text = viewModel.pickerViewData[row]
+            _view.muscleGroupTextField.textField.text = viewModel.pickerViewData[row]
         }
     }
 }

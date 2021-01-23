@@ -17,7 +17,7 @@ extension Workout.Add {
             workoutNameTextField.placeHolder = "WORKOUT NAME"
             exerciseNameTextField.placeHolder = "EXERCISE NAME"
 
-            muscleGroupTextField.inputView = muscleGroupPicker
+            muscleGroupTextField.textField.inputView = muscleGroupPicker
             addSubview(workoutNameTextField)
 //            addSubview(muscleGroupPicker)
             addSubview(exerciseNameTextField)
@@ -78,14 +78,9 @@ extension Workout.Add {
             return picker
         }()
 
-        public let muscleGroupTextField: UITextField = {
-            let textField = UITextField()
-            textField.placeholder = "MUSCLE GROUP"
-            textField.translatesAutoresizingMaskIntoConstraints = false
-            textField.autocapitalizationType = .allCharacters
-            textField.layer.borderWidth = 1
-            textField.layer.borderColor = UIColor(named: "DPBlue")?.cgColor
-            textField.font = UIFont(name: "HelveticaNeue-CondensedBlack", size: 17)
+        public let muscleGroupTextField: TextField = {
+            let textField = TextField()
+            textField.placeHolder = "MUSCLE GROUP"
             return textField
         }()
 
